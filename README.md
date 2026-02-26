@@ -1,0 +1,1 @@
+*This library is a work in progress. Come back in about ten years.*

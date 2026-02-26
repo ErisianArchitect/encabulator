@@ -1,0 +1,11 @@
+[package]
+name = "encabulator"
+authors = ["ErisianArchitect <https://github.com/ErisianArchitect>"]
+version = "0.1.0"
+edition = "2024"
+description = "A library for frobnicating encabulators (especially ones of the Brantwell Encabulator Class). This library is not to be used by Breck Momack."
+license-file = "LICENSE"
+readme = "README.md"
+documentation = "https://docs.rs/encabulator"
+
+[dependencies]
