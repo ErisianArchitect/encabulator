@@ -47,6 +47,8 @@ boromite_to_donations_table!(
         { 10000.0 => 20 },
 ]);
 
+/// Ensures that an f64 is Positive, Normal, or Zero.
+/// Posible values are: `-0.0`, `0.0`, `1.0`, and probably some others as well.
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 pub struct PositiveNormalOrZero(f64);
 
