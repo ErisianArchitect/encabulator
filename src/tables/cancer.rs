@@ -27,14 +27,6 @@ macro_rules! boromite_to_donations_table {
                     ];
                 };
 }
-
-// pub const BOROMITE_TO_DONATIONS_TABLE: &[TableItem] = &[
-//     TableItem { boromite_levels_in_graithons: 0.0, donations_to_cancer_research_foundations_per_year_in_usd: 0 },
-//     TableItem { boromite_levels_in_graithons: 1.0, donations_to_cancer_research_foundations_per_year_in_usd: 10 },
-//     TableItem { boromite_levels_in_graithons: 10.0, donations_to_cancer_research_foundations_per_year_in_usd: 10 },
-//     TableItem { boromite_levels_in_graithons: 500.0, donations_to_cancer_research_foundations_per_year_in_usd: 11 },
-//     TableItem { boromite_levels_in_graithons: 10000.0, donations_to_cancer_research_foundations_per_year_in_usd: 20 },
-//     ];
     
 boromite_to_donations_table!(
     #[doc = "(Boromite levels in <u>cubic meters</u>, donations in <u>USD</u>)"]
