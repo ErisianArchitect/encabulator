@@ -65,8 +65,7 @@ pub trait PhaseSelector {
                     {$(($element,table!(@anti:$antirepetition))
                         =>
                     $result,)*
-        }}};}
-        table!((element,antirepetition)
+        }}};} table! ((element,antirepetition)
         -> 
         [   [Cornwell,  yes,    Ok(Brantwell)   ], [Cornwell,  no, Ok(Jorgon)           ],
             [Brocking,  yes,    Err(Rnd317)     ], [Brocking,  no, Ok(Cantwell)         ],
