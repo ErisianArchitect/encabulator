@@ -1,1 +1,5 @@
-*This library is a work in progress. Come back in about ten years.*
+# *Encabulator*: The blazingly fast Frobnication and Encabulation library built by a student studying Frobnication and Encabulation at the infamous BS of U (Brantwell Sciences of University (sometimes shortened to just "BSU")).
+
+### Introduction
+
+As part of my thesis on triangulating OxyDiOxy-Trichromatic 3-Plus K-n nodes from a frobnication schematic, I had to do some simulations and encabulation of base values from the Allen Van Allen key-trichromatic flux lattice with some parts bridged from an triple pronged antirepitition encabulation unit with 3 Cornwell facades. It was hefty work, and I only had access to 4 Brantwell (lovely machines) Encabulators that are able to virtualize 92 manifolds from 705 configurations. This is enough for modeling the Lewis-Wise Steinwave tracer, but it's not quite enough for quantum frobnication of Turner Shetfield spring-loaded double-sided trance conformers. So I'm building this library to help virtualize, alphabetize, frobnicate, and encabulate Brantwell class Encabulators with higher branching characteristics than what I have access to in the BSU Frobnication and Encabulation laboratory.
