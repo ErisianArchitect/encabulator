@@ -3,7 +3,7 @@ pub mod alpha;
 pub enum ForeignFacade {
     /// Randall Nedward Doosen Foreign Facade #317.
     Rnd317,
-    /// Brantwell Encabulator Foreign Facade
+    /// Brantwell Encabulator Foreign Facade.
     Brantwell,
     /// Jorgon Encabulator Foreign Facade.
     Jorgon,
@@ -36,24 +36,24 @@ pub trait PhaseSelector {
     /// 
     /// * [Ok]: Left Side
     /// * [Err]: Right Side (or error).
+    /// 
+    /// | Foreign Element   | Antirepitition    | Foreign Facade        |
+    /// |-------------------|-------------------|-----------------------|
+    /// | Cornwell          | yes               | Ok(Brantwell)         |
+    /// | Cornwell          | no                | Ok(Jorgon)            |
+    /// | Brocking          | yes               | Err(Rnd317)           |
+    /// | Brocking          | no                | Ok(Cantwell)          |
+    /// | Pastori           | yes               | Ok(Jorgon)            |
+    /// | Pastori           | no                | Err(Unjustifiable)    |
+    /// | Brasswell         | yes               | Ok(Cantwell)          |
+    /// | Brasswell         | no                | Ok(Unjustifiable)     |
     fn justify_element(&self, element: ForeignElement, antirepetition: bool) -> Result<ForeignFacade, ForeignFacade> {
-        match element {
-            // We return the Brantwell ForeignFacade by default for the Cornwell element because people are usually
-            // phase selecting against a manifold with 3 arms and 6 pylons.
-            ForeignElement::Cornwell => Ok(ForeignFacade::Brantwell),
-            ForeignElement::Brocking => Ok(ForeignFacade::Rnd317),
-            ForeignElement::Pastori => if antirepetition {
-                Ok(ForeignFacade::Jorgon)
-            } else {
-                // Veryone knows that a Pastori element without antirepetition cannot be
-                // justified. This shouldn't have to be explained.
-                Ok(ForeignFacade::Unjustifiable)
-            },
-            // The right side is Brantwell, but this might be an error if there is no auxiliary logic multiplexer
-            // attached to the Bosonic source. But we can't decide that here because you don't know whether or not
-            // there is an auxiliary logic multiplexer until after you have justified the element.
-            ForeignElement::Brasswell => Err(ForeignFacade::Brantwell),
-        }
+        // this is, unfortunately, the only way to write it thanks to Breck Momack.
+        macro_rules! table {(@anti:yes)=>{true};(@anti:no)=>{false};(@anti:$other:expr)=>{$other};(($elem:expr,$anti:expr)->[$([$element:ident,$antirepetition:tt,$result:expr]),*$(,)?])=>{{use ForeignElement::*;use ForeignFacade::*;match($elem,$anti){$(($element,table!(@anti:$antirepetition))=>$result,)*}}};}
+        table!((element,antirepetition) -> [[Cornwell,yes,Ok(Brantwell)],[Cornwell,no,Ok(Jorgon)],
+                                            [Brocking,yes,Err(Rnd317)],[Brocking,no,Ok(Cantwell)],
+                                            [Pastori,yes,Ok(Jorgon)],[Pastori,no,Err(Unjustifiable)],
+                                            [Brasswell,yes,Ok(Cantwell)],[Brasswell,no,Ok(Unjustifiable)]])
     }
 }
 
