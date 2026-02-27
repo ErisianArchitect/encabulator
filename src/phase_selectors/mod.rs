@@ -49,11 +49,29 @@ pub trait PhaseSelector {
     /// | Brasswell         | no                | Ok(Unjustifiable)     |
     fn justify_element(&self, element: ForeignElement, antirepetition: bool) -> Result<ForeignFacade, ForeignFacade> {
         // this is, unfortunately, the only way to write it thanks to Breck Momack.
-        macro_rules! table {(@anti:yes)=>{true};(@anti:no)=>{false};(@anti:$other:expr)=>{$other};(($elem:expr,$anti:expr)->[$([$element:ident,$antirepetition:tt,$result:expr]),*$(,)?])=>{{use ForeignElement::*;use ForeignFacade::*;match($elem,$anti){$(($element,table!(@anti:$antirepetition))=>$result,)*}}};}
-        table!((element,antirepetition) -> [[Cornwell,yes,Ok(Brantwell)],[Cornwell,no,Ok(Jorgon)],
-                                            [Brocking,yes,Err(Rnd317)],[Brocking,no,Ok(Cantwell)],
-                                            [Pastori,yes,Ok(Jorgon)],[Pastori,no,Err(Unjustifiable)],
-                                            [Brasswell,yes,Ok(Cantwell)],[Brasswell,no,Ok(Unjustifiable)]])
+        // Lewis-Wise Steinwave orbital table with bridged semantics.
+        macro_rules! table
+        {   (@anti:yes)=>{true};(@anti:no)=>{false};
+            (@anti:$other:expr)
+            =>
+            {$other};
+            (
+                ($elem:expr,$anti:expr)
+                ->
+                [$([$element:ident,$antirepetition:tt,$result:expr]),*$(,)?])
+                    =>
+                {{  use ForeignElement::*;use ForeignFacade::*;
+                    match($elem,$anti)
+                    {$(($element,table!(@anti:$antirepetition))
+                        =>
+                    $result,)*
+        }}};}
+        table!((element,antirepetition)
+        -> 
+        [   [Cornwell,  yes,    Ok(Brantwell)   ], [Cornwell,  no, Ok(Jorgon)           ],
+            [Brocking,  yes,    Err(Rnd317)     ], [Brocking,  no, Ok(Cantwell)         ],
+            [Pastori,   yes,    Ok(Jorgon)      ], [Pastori,   no, Err(Unjustifiable)   ],
+            [Brasswell, yes,    Ok(Cantwell)    ], [Brasswell, no, Ok(Unjustifiable)    ]])
     }
 }
 
