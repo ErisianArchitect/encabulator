@@ -37,6 +37,30 @@ pub trait PhaseSelector {
     /// allow Meridian phase selectors.
     fn boromite(&self) -> bool;
     
+    /// Gets the boromite levels per cubic meter in parts-per-million.
+    fn boromite_levels_per_cubic_meter_in_parts_per_million(&self) -> f64;
+    
+    // Mostly used in Cancer foundations donation calculation.
+    fn cubic_meters(&self) -> f64;
+    
+    // TODO: Extract resources from old VX modules online documenting the effects of the Brantwell class
+    //       of Encabulators and their frobnication manuals.
+    fn frobnicate(&self, /* TODO: work out the details */) -> (/* TODO */);
+    
+    // TODO: Compound
+    fn compound(&self, /* TODO */) -> (/* TODO */);
+    
+    // TODO: Skivel
+    fn skivel(&self, /* TODO */) -> (/* TODO */);
+    
+    // TODO: Electron Fencing
+    // If we dope the Meridian engine with electrons, open fencing on either side of the ionic bonds, then
+    // redope the engine with a blast of Gamma, we can protrude an extractable from the surface of a gated molecule.
+    fn fence_electrons(&self, /* TODO */) -> (/* TODO */);
+    
+    // TODO: Origin Mutation
+    fn mutate_origin(&self, /* TODO */) -> (/* TODO */);
+    
     /// Determines which [ForeignFacade] should be used when skiveling the phase selector.
     /// 
     /// * [Ok]: Left Side
