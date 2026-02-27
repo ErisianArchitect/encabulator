@@ -1,5 +1,6 @@
 pub mod alpha;
 
+/// The post-Momack Foreign Facades for the Brantwell class of Encabulators.
 pub enum ForeignFacade {
     /// Randall Nedward Doosen Foreign Facade #317.
     Rnd317,
@@ -13,7 +14,11 @@ pub enum ForeignFacade {
     Unjustifiable,
 }
 
+/// Foreign Element phase transistor.
+/// Should be self explanatory.
 pub enum ForeignElement {
+    /// Wallace H. Cornwell invented the Cornwell phase transistor shortly after the invention of the Brocking phase transistor. Cornwell's phase transistor differed from the Brocking phase transistor in that it had a phosphorous cathode angled inward instead of outward, and an anterior pump speed of 45.8 graithons instead of the measly 12.7891538365902 graithons of the Brocking phase transistor.
+    /// - Some say that the only thing the Brocking phase transistor was ever good for was realigning quantum time crystals along a W-Phi boundary on the fifth plane, orthogonal to the base shifting frequency.
     Cornwell,
     Brocking,
     Pastori,
