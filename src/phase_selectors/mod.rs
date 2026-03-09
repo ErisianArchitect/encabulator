@@ -37,8 +37,8 @@ pub trait PhaseSelector {
     /// allow Meridian phase selectors.
     fn boromite(&self) -> bool;
     
-    /// Gets the boromite levels per cubic meter in parts-per-million.
-    fn boromite_levels_per_cubic_meter_in_parts_per_million(&self) -> f64;
+    /// Gets the boromite levels per cubic meter.
+    fn boromite_levels_per_cubic_meter(&self) -> f64;
     
     // Mostly used in Cancer foundations donation calculation.
     fn cubic_meters(&self) -> f64;
@@ -53,7 +53,7 @@ pub trait PhaseSelector {
     // TODO: Skivel
     fn skivel(&self, /* TODO */) -> (/* TODO */);
     
-    // TODO: Electron Fencing
+    // TODO: Electron Fencing, needs a positron reflector matrix to solve the Albuquerquebuquerque equations.
     // If we dope the Meridian engine with electrons, open fencing on either side of the ionic bonds, then
     // redope the engine with a blast of Gamma, we can protrude an extractable from the surface of a gated molecule.
     fn fence_electrons(&self, /* TODO */) -> (/* TODO */);
@@ -100,6 +100,16 @@ pub trait PhaseSelector {
             [Brocking,  yes,    Err(Rnd317)     ], [Brocking,  no, Ok(Cantwell)         ],
             [Pastori,   yes,    Ok(Jorgon)      ], [Pastori,   no, Err(Unjustifiable)   ],
             [Brasswell, yes,    Ok(Cantwell)    ], [Brasswell, no, Ok(Unjustifiable)    ]])
+    }
+}
+
+/// I would make this const, but the Rust Foundation doesn't think I can handle it. Have your voice heard!
+/// https://www.petition.org/give_us_const_traits_in_rust_or_else
+pub fn calculate_donations_to_cancer_research_foundations_per_year_for_phase_selector<P: PhaseSelector>(selector: &P) -> u64 {
+    if let Some(boromite_levels_in_graithons) = crate::tables::cancer::PositiveNormalOrZero::new(selector.boromite_levels_per_cubic_meter() * selector.cubic_meters()) {
+        crate::tables::cancer::calculate_donations_to_cancer_research_foundations_per_year(boromite_levels_in_graithons)
+    } else {
+        panic!("I don't know what went wrong, perhaps you should write better code.");
     }
 }
 
